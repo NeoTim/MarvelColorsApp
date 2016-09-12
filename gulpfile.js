@@ -134,7 +134,8 @@ gulp.task('dist', ['build', 'install-packages'], function(cb) {
       // Sign the app
       electronOsxSign({
         app: appFilePath,
-        identity: 'Developer ID Application: Roman NURIK (NLACF347G7)',
+        identity: '',
+        // identity: 'Developer ID Application: Roman NURIK (NLACF347G7)',
         platform: 'darwin'
       }, (err) => {
         if (err) {
@@ -142,7 +143,6 @@ gulp.task('dist', ['build', 'install-packages'], function(cb) {
           cb();
           return;
         }
-
         cb();
       });
     });
