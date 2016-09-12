@@ -13,9 +13,122 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+const color = require('./color');
+
+const _colors = getColors();
+const keys   = Object.keys(_colors);
+
+module.exports = {};
+
+keys.forEach(key => {
+  const item = _colors[key];
+  const isLighter = 'lighter' in item;
+  const isLight   = 'light' in item;
+  const isDark    = 'dark' in item;
+  const isDarker  = 'darker' in item;
+
+  let lighter = item.lighter;
+  let light   = item.light;
+  let base    = item.base;
+  let dark    = item.dark;
+  let darker  = item.darker;
+
+  if (!isLighter) {
+      let c = isLight ? color(item.light.hex).lighten(10) : color(item.base.hex).lighten(20);
+      lighter = {hex: c.value, white: c.isDark()}
+  }
+
+  if (!isLight) {
+      let c = color(item.base.hex).lighten(10);
+      light = {hex: c.value, white: c.isDark()}
+  }
+
+  if (!isDark) {
+      let c = color(item.base.hex).darken(10);
+      dark = {hex: c.value, white: c.isDark()}
+  }
+
+  if (!isDarker) {
+      let c = isDark ? color(item.dark.hex).darken(10) : color(item.base.hex).darken(20);
+      darker = {hex:c.value, white: c.isDark()};
+  }
+
+  module.exports[key] = {lighter, light, base, dark, darker};
+});
+
+
 
 // thanks to https://github.com/minusfive/sass-material-colors for a great starting point
-module.exports = {
+function getColors() {
+  return {
+    'Blue':{
+      'light': {hex:'#85D7FF', white: true},
+      'base':  {hex:'#1FB6FF', white: true},
+      'dark':  {hex:'#009EEB', white: true}
+    },
+    'Purple':{
+      'light': {hex:'#A389F4', white: true},
+      'base':  {hex:'#7E5BEF', white: true},
+      'dark':  {hex:'#592DEA', white: true}
+    },
+    'Pink':{
+      'light': {hex:'#FF7CE5', white: true},
+      'base':  {hex:'#FF49DB', white: true},
+      'dark':  {hex:'#FF16D1', white: true}
+    },
+    'Orange':{
+      'light': {hex:'#FF9E7C', white: true},
+      'base':  {hex:'#FF7849', white: true},
+      'dark':  {hex:'#FF5216', white: true}
+    },
+    'Green':{
+      'light': {hex:'#29EB7F', white: true},
+      'base':  {hex:'#13CE66', white: true},
+      'dark':  {hex:'#0F9F4F', white: true}
+    },
+    'Yellow':{
+      'light': {hex:'#FFD55F', white: true},
+      'base':  {hex:'#FFC82C', white: true},
+      'dark':  {hex:'#F8B700', white: true}
+    },
+    'Black':{
+      'base': {hex:'#1F2D3D', white: true}
+    },
+    'Steel':{
+      'base': {hex:'#273444', white: true}
+    },
+    'Slate':{
+      'base': {hex:'#3C4858', white: true}
+    },
+    'Silver':{
+      'base': {hex:'#8492A6', white: true}
+    },
+    'Smoke':{
+      'base':   {hex:'#E0E6ED'},
+      'dark':   {hex:'#D3DCE6'},
+      'darker': {hex:'#C0CCDA'}
+    },
+    'Snow':{
+      'base':   {hex:'#F9FAFC'},
+      'dark':   {hex:'#EFF2F7'},
+      'darker': {hex:'#E5E9F2'}
+    },
+    'Info':{
+      'base': {hex:'#1FB6FF', white: true}
+    },
+    'Positive':{
+      'base': {hex:'#13CE66', white: true}
+    },
+    'Negative':{
+      'base': {hex:'#FF4949', white: true}
+    },
+    'Warning':{
+      'base': {hex:'#FFC82C', white: true}
+    }
+  };
+}
+
+const MaterialColors = {
   'red': {
     '50':   {hex: '#FFEBEE'},
     '100':  {hex: '#FFCDD2'},
@@ -308,4 +421,4 @@ module.exports = {
     '800':  {hex: '#37474F', white: true},
     '900':  {hex: '#263238', white: true}
   }
-};
+}

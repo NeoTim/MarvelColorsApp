@@ -234,7 +234,7 @@ function checkForAppUpdates() {
   });
   autoUpdater.on('error', error => {
     console.error('Error updating: ' + error);
-    // electron.dialog.showErrorBox('error', error.toString());
+    electron.dialog.showErrorBox('error', error.toString());
   });
   autoUpdater.checkForUpdates();
 }

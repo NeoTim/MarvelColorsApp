@@ -149,12 +149,12 @@ class MaterialColors {
 
       let $hueIcon = $('<div>')
           .addClass(this.CLASS_NAMES.hueIcon)
-          .css('background-color', color['500'].hex)
+          .css('background-color', color['base'].hex)
           .appendTo($hue);
 
       $('<div>')
           .addClass(this.CLASS_NAMES.hueIconSelector)
-          .css('background-color', color['700'].hex)
+          .css('background-color', color['dark'].hex)
           .appendTo($hueIcon);
 
       $('<div>')
