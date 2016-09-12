@@ -11,11 +11,15 @@ A handy little Mac app that gives you quick access to the standard material desi
 If you want to customize the app for your own needs, you can do a custom build.
 
   1. First install [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/).
-  2. Clone the repository and in the root directory, run:
+  2. Make sure an install electron globally, run: 
+        
+        $ npm install -g electron
+
+  3. Clone the repository and in the root directory, run:
 
         $ npm install
 
-  3. To run the app:
+  4. To run the app:
 
         $ npm start
 
